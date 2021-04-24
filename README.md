@@ -1,2 +1,1 @@
-# ideal-umbrella
-nitro playground
+nitro components playground
