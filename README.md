@@ -1,6 +1,6 @@
 nitro components playground
 
-####Section navigation
+#### Section navigation
 
 Notify about browser context session history state pop and push new state on `scene` changes.
 
