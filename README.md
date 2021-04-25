@@ -6,11 +6,11 @@ Notify about browser context session history state pop and push new state on `sc
 
 ```erlang
 config :n2o,
-  protocols: [:io_nav | Application.compile_env(:n2o, protocols,[])]
+  protocols: [:io_naw | Application.compile_env(:n2o, protocols,[])]
 
 event(init) ->
   nitro:update(app, #panel{id=app,body=[]}),
-  nitro:update(nav, #nav{id=nav, body=[
+  nitro:update(nav, #naw{id=nav, body=[
       #scene{title= <<"Z">>, state=0, url="/index.html#z"}
     , #scene{title= <<"O">>, state=1, url="/index.html#o"}
   ]});
