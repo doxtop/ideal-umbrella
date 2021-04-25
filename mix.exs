@@ -10,6 +10,6 @@ defmodule Idu.MixProject do
       deps: deps()
   ]
 
-  def application, do: [ extra_applications: [] ]
-  defp deps, do: []
+  def application, do: [extra_applications: [], applications: [:nitro]]
+  defp deps, do: [ {:nitro, "~> 6.4"} ]
 end

@@ -1,4 +1,4 @@
 import Config
 
 config :n2o,
-  protocols: [:io_nav | Application.compile_env(:n2o, :protocols, [])]
+  protocols: [:io_naw | Application.compile_env(:n2o, :protocols, [])]

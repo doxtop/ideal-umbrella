@@ -1,10 +1,11 @@
--module(dom_nav).
+-module(dom_naw).
 -description("nav section element connected to browser session history").
+-include_lib("nitro/include/nitro.hrl").
 -include("nitro.hrl").
 -export([render_element/1]).
 
-render_element(Rec) when Rec#nav.show_if==false -> [];
-render_element(#nav{id=Id}=Rec) ->
+render_element(Rec) when Rec#naw.show_if==false -> [];
+render_element(#naw{id=Id}=Rec) ->
     Cid = case Id of [] -> nitro:temp_id(); I -> I end,
     Lsn = string:replace(Cid, "-", "",all),
 
@@ -41,13 +42,13 @@ render_element(#nav{id=Id}=Rec) ->
       #link{id=Lid, href=U, body=T}
     end,
 
-    Routes = case Rec#nav.body of
+    Routes = case Rec#naw.body of
       Links when is_list(Links) -> [Nav(L) || L <- Links];
       R -> R
     end,
 
     wf_tags:emit_tag( <<"nav">>, nitro:render(Routes), [
       {<<"id">>,    Cid},
-      {<<"class">>, Rec#nav.class},
-      {<<"style">>, Rec#nav.style} | Rec#nav.data_fields
+      {<<"class">>, Rec#naw.class},
+      {<<"style">>, Rec#naw.style} | Rec#naw.data_fields
     ]).

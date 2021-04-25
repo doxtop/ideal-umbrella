@@ -1,5 +1,6 @@
--module(io_nav).
+-module(io_naw).
 -description("navigation io").
+-include_lib("nitro/include/nitro.hrl").
 -include("nitro.hrl").
 -export([info/3]).
 
