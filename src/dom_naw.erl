@@ -43,9 +43,18 @@ render_element(#naw{id=Id}=Rec) ->
     end,
 
     Routes = case Rec#naw.body of
-      Links when is_list(Links) -> [Nav(L) || L <- Links];
+      [] -> [];
+      Links when is_list(Links) -> 
+        Lxs = [Nav(L) || L <- Links],
+        nitro:wire(#bind{target=Cid
+          , type=reset
+          , postback=nitro:f("qi('~s').dispatchEvent(new Event('click'));", [(hd(Lxs))#link.id])
+          }),
+        Lxs;
       R -> R
     end,
+
+    nitro:wire(#jq{target=Cid, method=["dispatchEvent"] , args= ["new CustomEvent('reset', {detail: {}})"]}),
 
     wf_tags:emit_tag( <<"nav">>, nitro:render(Routes), [
       {<<"id">>,    Cid},

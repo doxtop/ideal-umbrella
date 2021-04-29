@@ -4,6 +4,10 @@
 -include("nitro.hrl").
 -export([info/3]).
 
+info(#scene{id= <<"null">>} =M,R,S)  -> {unknown,M,R,S};
+info(#scene{id=[]}          =M,R,S)  -> {unknown,M,R,S};
+info(#scene{cid= <<"null">>}=M,R,S)  -> {unknown,M,R,S};
+info(#scene{cid=[]}         =M,R,S)  -> {unknown,M,R,S};
 info(#scene{id=Id, cid=Cid}=M,R,Ctx) ->
     Ls = {qa, iolist_to_binary(["#", Cid, " > .active"])},
     nitro:wire(#jq{target={ps, Ls, "classList"}, method=["toggle"], args=["'active'"]}),
