@@ -10,6 +10,10 @@ defmodule Idu.MixProject do
       deps: deps()
   ]
 
-  def application, do: [extra_applications: [], applications: [:nitro]]
-  defp deps, do: [ {:nitro, "~> 6.4"} ]
+  def application, do: [extra_applications: [], applications: []]
+  defp deps, do: [
+    # transient crypto? will start asn1,ssl,inets,hex etc.
+    {:n2o, "~> 8.12",  runtime: false, app: false},
+    {:nitro, "~> 7.2", runtime: false, app: false}
+  ]
 end
