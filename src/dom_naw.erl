@@ -34,9 +34,19 @@ render_element(#naw{id=Id}=Rec) ->
       , "}"
       ])),
 
+    % notes from crm:
+    % - links should get individual class from scene
+    % - naw should have default scene
+    % - naw should have tab sorting attribute, usort maybe for scenes to save time on client
+    % - order choice: id, title, ?
+    % - flex items can have order in style, so style for inner links shoud also be provded
+    % - page is formatted in terms of terms, so lists should be decoded by :unicode module
+
+    % ts will fail on integer states, we used term before
+    %
     Nav = fun(#scene{id=Id1, state=S, title=T, url=U}) ->
       Lid = case Id1 of [] -> nitro:temp_id(); I1 -> I1 end,
-      F = nitro:f("pss(Object.assign({page:~w}, {id: \"~s\", cid: \"~s\"}), \"~s\")", [S,Lid,Cid,U]),
+      F = nitro:f("pss(Object.assign({page:\"~ts\"}, {id: \"~s\", cid: \"~s\"}), \"~s\")", [S,Lid,Cid,U]),
 
       nitro:wire(#bind{target=Lid, type=click, postback=F}),
       #link{id=Lid, href=U, body=T}
